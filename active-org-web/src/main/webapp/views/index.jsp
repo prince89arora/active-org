@@ -2,9 +2,10 @@
  pageEncoding="UTF-8"%>
  <html>
  <head>
-    <title>Home</title>
+    <title>${title}</title>
+    <%@include file="common/head.jsp" %>
  </head>
  <body>
-    <h1>Home</h1>
+    <h1>${title} Test</h1>
  </body>
  </html>

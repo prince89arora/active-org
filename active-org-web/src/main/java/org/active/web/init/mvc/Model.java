@@ -1,25 +1,25 @@
 package org.active.web.init.mvc;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Model map to transfer set of information from controller to
+ * view template.
  *
+ * @author princearora
  */
-public class Model implements Serializable {
-
-    private Map<String, Object> objectMap = null;
+public class Model extends HashMap<String, Object> {
 
     public Model() {
-        this.objectMap = new HashMap<String, Object>();
+
     }
 
-    public void set(String key, Object value) {
-        this.objectMap.put(key, value);
+    public void addAttribute(String key, Object object) {
+        super.put(key, object);
     }
 
-    public Object get(String key) {
-        return this.objectMap.get(key);
+    public void addAll(Map<String, Object> map) {
+        super.putAll(map);
     }
 }

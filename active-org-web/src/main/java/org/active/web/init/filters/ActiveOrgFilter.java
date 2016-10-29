@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 /**
+ * Main Application Filter
  *
+ * @author princearora
  */
 @WebFilter(displayName = "Active Org Filter", urlPatterns = {"/*", "/**"})
 public class ActiveOrgFilter implements Filter {

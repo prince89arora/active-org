@@ -1,19 +1,26 @@
 package org.active.web.init.mvc;
 
 /**
+ * Configuration pojo for view resolver.
  *
+ * @author princearora
  */
-public enum ViewResolverConfig {
+public class ViewResolverConfig {
 
-    JSP;
+    private final String basePath;
+    private final String extension;
 
-    private String basePath;
+    public ViewResolverConfig(String basePath, String extension) {
+        this.basePath = basePath;
+        this.extension = extension;
+    }
 
     public String getBasePath() {
         return this.basePath;
     }
 
-    public void setBasePath(String basePath) {
-        this.basePath = basePath;
+    public String getExtension() {
+        return this.extension;
     }
+
 }

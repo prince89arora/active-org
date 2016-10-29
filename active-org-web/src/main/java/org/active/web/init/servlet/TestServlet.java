@@ -1,6 +1,12 @@
 package org.active.web.init.servlet;
 
-import javax.servlet.RequestDispatcher;
+import org.active.web.init.commons.ApplicationContextFactory;
+import org.active.web.init.mvc.HttpStatus;
+import org.active.web.init.mvc.Model;
+import org.active.web.init.mvc.Response;
+import org.active.web.init.mvc.Viewable;
+import org.apache.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +20,16 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/hello"})
 public class TestServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    private static final Logger log = Logger.getLogger(TestServlet.class);
+
+    protected void doGet(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/index.jsp");
-        dispatcher.forward(request, response);
+        Model model = new Model();
+        model.addAttribute("title", "Home Page");
+        Viewable viewable = new Viewable("index", model);
+
+        ApplicationContextFactory.INIT.getViewResolver()
+                .render(Response.builder().request(httpRequest).httpResponse(httpResponse)
+                        .httpStatus(HttpStatus.ok).viewable(viewable).build());
     }
 }
