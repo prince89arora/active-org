@@ -1,4 +1,5 @@
-<div data-dojo-type="dijit/Dialog" data-dojo-id="loginDialog" title="Login">
+<div data-dojo-type="dijit/Dialog" data-dojo-id="loginDialog" title="Login" id="loginDialog">
+
     <table class="dijitDialogPaneContentArea">
         <tr>
             <td><label for="username">Username:</label></td>
@@ -10,9 +11,10 @@
         </tr>
     </table>
 
+    <p class="error-message" id="login-error"></p>
+
     <div class="dijitDialogPaneActionBar">
-        <button data-dojo-type="dijit/form/Button" type="submit" id="login">Login</button>
-        <button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="onClick:function(){loginDialog.hide();}"
-                id="cancel">Cancel</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-id="loginSubmit" type="submit" id="loginSubmit">Login</button>
+        <button data-dojo-type="dijit/form/Button" type="button" id="cancel">Cancel</button>
     </div>
 </div>
