@@ -29,7 +29,6 @@ public class ActiveOrgFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        LOGGER.info("Inside Filter doFilter");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

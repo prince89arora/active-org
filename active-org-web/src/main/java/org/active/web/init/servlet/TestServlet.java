@@ -1,7 +1,7 @@
 package org.active.web.init.servlet;
 
 import org.active.web.init.commons.ApplicationContextFactory;
-import org.active.web.init.mvc.HttpStatus;
+import org.active.web.init.commons.HttpStatus;
 import org.active.web.init.mvc.Model;
 import org.active.web.init.mvc.Response;
 import org.active.web.init.mvc.Viewable;
@@ -22,7 +22,7 @@ public class TestServlet extends HttpServlet {
 
     private static final Logger log = Logger.getLogger(TestServlet.class);
 
-    protected void doGet(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
+        protected void doGet(HttpServletRequest httpRequest, HttpServletResponse httpResponse)
             throws ServletException, IOException {
         Model model = new Model();
         model.addAttribute("title", "Home Page");

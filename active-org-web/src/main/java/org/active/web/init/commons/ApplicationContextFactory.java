@@ -1,6 +1,7 @@
 package org.active.web.init.commons;
 
 import org.active.web.init.mvc.AbstractViewResolver;
+import org.active.web.init.security.SecurityContext;
 
 import javax.servlet.ServletContext;
 
@@ -17,6 +18,7 @@ public enum ApplicationContextFactory {
 
     private ServletContext servletContext;
     private AbstractViewResolver viewResolver;
+    private SecurityContext securityContext;
 
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
@@ -34,4 +36,11 @@ public enum ApplicationContextFactory {
         return this.viewResolver;
     }
 
+    public SecurityContext getSecurityContext() {
+        return securityContext;
+    }
+
+    public void setSecurityContext(SecurityContext securityContext) {
+        this.securityContext = securityContext;
+    }
 }

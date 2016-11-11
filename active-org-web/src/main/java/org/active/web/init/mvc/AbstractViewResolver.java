@@ -1,6 +1,7 @@
 package org.active.web.init.mvc;
 
 import org.active.web.init.commons.ApplicationContextFactory;
+import org.active.web.init.commons.HttpStatus;
 import org.active.web.init.exception.TemplateNotFoundException;
 import org.apache.log4j.Logger;
 
