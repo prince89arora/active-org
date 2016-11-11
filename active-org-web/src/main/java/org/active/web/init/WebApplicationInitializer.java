@@ -34,7 +34,7 @@ public class WebApplicationInitializer implements ServletContainerInitializer {
         SecurityInitializer.init().url("/").authorized(false)
                 .httpMethods(new HttpMethod[]{HttpMethod.GET})
                 .add()
-                .url("/hello/*").authorized(false).httpMethods(new HttpMethod[]{HttpMethod.GET})
+                .url("/hello/*").authorized(true).httpMethods(new HttpMethod[]{HttpMethod.GET})
                 .add()
                 .url("/static/*").authorized(false).httpMethods(new HttpMethod[]{HttpMethod.GET})
                 .add().secure();
