@@ -5,7 +5,7 @@
     <title>${title}</title>
     <%@include file="common/head.jsp" %>
  </head>
- <body class="soria">
+ <body class="claro">
     <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:true, liveSplitters:false"
     id="container">
 
@@ -14,6 +14,7 @@
 
          <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'leading'">Leading pane</div>
          <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">Center pane</div>
+         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right'">Email Section</div>
          <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">Bottom pane</div>
 
     </div>
