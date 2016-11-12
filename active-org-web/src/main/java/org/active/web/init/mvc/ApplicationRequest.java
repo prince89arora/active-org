@@ -5,6 +5,7 @@ import org.active.web.init.security.UserPrinciple;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.security.Principal;
+import java.util.Map;
 
 /**
  *
@@ -12,6 +13,7 @@ import java.security.Principal;
 public class ApplicationRequest extends HttpServletRequestWrapper {
 
     private HttpServletRequest request;
+    private Map<String, String[]> parameterMap;
 
     /**
      * Constructs a request object wrapping the given request.
@@ -22,6 +24,7 @@ public class ApplicationRequest extends HttpServletRequestWrapper {
     public ApplicationRequest(HttpServletRequest request) {
         super(request);
         this.request = request;
+        this.parameterMap = request.getParameterMap();
     }
 
     public Principal getUserPrincipal() {
@@ -32,5 +35,13 @@ public class ApplicationRequest extends HttpServletRequestWrapper {
         }
     }
 
+    public String getParameter(String key) {
+        String[] value = this.parameterMap.get(key);
+        return value[0];
+    }
 
+    @Override
+    public Map<String, String[]> getParameterMap() {
+        return parameterMap;
+    }
 }

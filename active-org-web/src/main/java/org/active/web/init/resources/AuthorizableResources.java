@@ -2,6 +2,7 @@ package org.active.web.init.resources;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
+import org.active.web.init.mvc.ApplicationRequest;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +25,16 @@ public class AuthorizableResources {
     @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@Context HttpServletRequest request) {
-        log.debug("Login request for: "+ request.getParameter("username"));
+        boolean status = false;
+        if (request.getParameter("username") != null &&
+                request.getParameter("password") != null) {
+            if ((request.getParameter("username").equals("admin") &&
+                    request.getParameter("password").equals("admin"))) {
+                status = true;
+            }
+        }
         JsonObject json = Json.object();
-        json.add("status", true);
+        json.add("status", status);
         return Response.ok().entity(json.toString()).build();
     }
 }
