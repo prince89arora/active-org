@@ -3,6 +3,7 @@ package org.active.web.init.filters;
 import org.active.web.init.commons.ApplicationContextFactory;
 import org.active.web.init.mvc.ApplicationRequest;
 import org.active.web.init.security.SecurityMapping;
+import org.active.web.init.security.SecurityUtil;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static org.active.web.init.commons.ApplicationConstants.UNAUTHORIZED;
 
@@ -40,10 +42,17 @@ public class ApplicationSecurityFilter implements Filter {
         } else {
             SecurityMapping securityMapping = ApplicationContextFactory.INIT.getSecurityContext()
                     .findMapping(request.getServletPath());
-            if (securityMapping.isAuthorized()) {
-                if (!ApplicationContextFactory.INIT.getSecurityContext().validateRequest(request)) {
-                    response.sendRedirect(ApplicationContextFactory.INIT.getServletContext().getContextPath()
-                            + UNAUTHORIZED);
+            if (securityMapping == null) {
+                unauthorized(response);
+            } else {
+                if (securityMapping.isAuthorized()) {
+                    if (!ApplicationContextFactory.INIT.getSecurityContext().validateRequest(request)) {
+                        unauthorized(response);
+                        return;
+                    }
+                }
+                if (!SecurityUtil.checkRequestMethod(request, securityMapping.getHttpMethods())) {
+                    unauthorized(response);
                     return;
                 }
             }
@@ -55,6 +64,11 @@ public class ApplicationSecurityFilter implements Filter {
     @Override
     public void destroy() {
         this.filterConfig = null;
+    }
+
+    private void unauthorized(HttpServletResponse response) throws IOException {
+        response.sendRedirect(ApplicationContextFactory.INIT.getServletContext().getContextPath()
+                + UNAUTHORIZED);
     }
 
 }
