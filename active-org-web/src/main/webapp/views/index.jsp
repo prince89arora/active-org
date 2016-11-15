@@ -12,9 +12,17 @@
          <!-- Main Toolbar -->
          <%@include file="common/toolbar.jsp" %>
 
-         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'leading'">Leading pane</div>
-         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">Center pane</div>
-         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'right'">Email Section</div>
+
+         <%@include file="common/leftPane.jsp" %>
+
+         <div data-dojo-type="dijit/layout/ContentPane"
+            data-dojo-props="splitter:true, region:'center'">
+            <div id="main-container">
+                Center pane
+            </div>
+          </div>
+
+         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="splitter:true, region:'right'">Chat Section</div>
          <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">Bottom pane</div>
 
     </div>

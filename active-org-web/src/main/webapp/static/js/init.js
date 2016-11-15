@@ -11,6 +11,7 @@ dojo.require("dojo._base.event");
 dojo.require("dojo.html");
 
 dojo.require("app.login");
+dojo.require("app.modules");
 
 dojo.addOnLoad(function(){
     dojo.parser.parse();
@@ -35,6 +36,7 @@ dojo.addOnLoad(function(){
 
         if (login.processLogin()) {
             console.log("login success");
+            var modules = new app.modules("leftPane");
         } else {
             dojo.html.set(dojo.dom.byId("login-error"), "Invalid login...");
             dojo._base.event.stop(e);
