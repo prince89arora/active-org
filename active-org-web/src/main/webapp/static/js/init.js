@@ -14,7 +14,7 @@ dojo.require("dojo.request");
 
 dojo.require("app.login");
 dojo.require("app.modules");
-dojo.require("app.mailFolder");
+dojo.require("app.leftPanel");
 
 dojo.addOnLoad(function(){
     dojo.parser.parse();
@@ -65,10 +65,10 @@ dojo.addOnLoad(function(){
              */
             dojo.dom.byId("mainToolbar.login").style.display = "none";
             dojo.html.set(dojo.dom.byId("user-name"), response.username);
-
+            var leftPane = dojo.dom.byId("leftPane");
+            var mailfolder = new app.leftPanel().placeAt(leftPane);
         }
     });
 
-    var leftPane = dojo.dom.byId("leftPane");
-    var mailfolder = new app.mailFolder().placeAt(leftPane);
+
 });

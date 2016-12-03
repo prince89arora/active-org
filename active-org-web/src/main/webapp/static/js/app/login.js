@@ -8,8 +8,9 @@ define([
     "dojo/request",
     "dojo/dom",
     "dojo/html",
-    "app/modules"
-], function(cookie, declare, request, dom, html, modules) {
+    "app/modules",
+    "app/leftPanel"
+], function(cookie, declare, request, dom, html, modules, leftPanel) {
     return declare("login", null, {
 
         usernameinput : "",
@@ -36,6 +37,8 @@ define([
                     cookie("loginid", response.token, { expires: 10 });
                     html.set(dom.byId("user-name"), usernameVar);
                     //dojo.dom.byId("mainToolbar.login").style.display = "none";
+                    var leftPane = dojo.dom.byId("leftPane");
+                    var mailfolder = new app.leftPanel().placeAt(leftPane);
                 } else {
                   html.set(dom.byId("login-error"), "Invalid login...");
                 }
@@ -52,6 +55,8 @@ define([
           });
           dojo.html.set(dojo.dom.byId("user-name"), "anonymous");
           dojo.dom.byId("mainToolbar.login").style.display = "block";
+
+          dojo.html.set(dojo.dom.byId("leftPane"), "");
         }
     });
 });
