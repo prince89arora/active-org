@@ -1,5 +1,8 @@
 package org.active.web.init.mvc;
 
+import org.active.web.init.commons.ApplicationContextFactory;
+import org.active.web.init.security.ApplicationUser;
+import org.active.web.init.security.User;
 import org.active.web.init.security.UserPrinciple;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,13 @@ public class ApplicationRequest extends HttpServletRequestWrapper {
 
     public Principal getUserPrincipal() {
         if (request.getUserPrincipal() == null) {
-            return new UserPrinciple("Prince");
+            User user = ApplicationContextFactory.INIT.getLoginUser(
+                    ApplicationContextFactory.INIT.getSecurityContext().getLoginToken(request)
+            );
+            if (user != null) {
+                return new UserPrinciple(user.getUserId());
+            }
+            return null;
         } else {
             return request.getUserPrincipal();
         }

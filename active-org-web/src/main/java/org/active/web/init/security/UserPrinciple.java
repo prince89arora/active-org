@@ -20,16 +20,11 @@ public class UserPrinciple implements Principal {
 
     @Override
     public String toString() {
-        return null;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
+        return "User -> { "+this.name+" }";
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 }

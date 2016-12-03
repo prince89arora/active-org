@@ -3,33 +3,55 @@
  * and get user details from server.
  */
 define([
+    "dojo/cookie",
     "dojo/_base/declare",
     "dojo/request",
-    "dojo/dom"
-], function(declare, request, dom){
+    "dojo/dom",
+    "dojo/html",
+    "app/modules"
+], function(cookie, declare, request, dom, html, modules) {
     return declare("login", null, {
 
-        username : "",
-        password : "",
+        usernameinput : "",
+        passwordinput : "",
 
         constructor : function(options) {
-            this.username = options.username;
-            this.password = options.password;
+            this.usernameinput = options.username;
+            this.passwordinput = options.password;
         },
 
-        processLogin: function(){
+        processLogin: function() {
             var status = false;
+            var usernameVar = this.usernameinput;
             request.post("/active-org/rest/auth/login", {
                 data: {
-                    username: this.username,
-                    password: this.password
+                    username: usernameVar,
+                    password: this.passwordinput
                 },
                 sync : true,
                 handleAs : "json"
             }).then(function(response){
                 status = response.status;
+                if (status) {
+                    cookie("loginid", response.token, { expires: 10 });
+                    html.set(dom.byId("user-name"), usernameVar);
+                    //dojo.dom.byId("mainToolbar.login").style.display = "none";
+                } else {
+                  html.set(dom.byId("login-error"), "Invalid login...");
+                }
             });
             return status;
+        },
+
+        logOut : function() {
+          request.post("/active-org/rest/auth/logout", {
+              sync : true,
+              handleAs : "json"
+          }).then(function(response){
+              cookie("loginid", "", { expires: -1 });
+          });
+          dojo.html.set(dojo.dom.byId("user-name"), "anonymous");
+          dojo.dom.byId("mainToolbar.login").style.display = "block";
         }
     });
 });

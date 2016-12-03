@@ -47,4 +47,13 @@ public class SecurityContext {
         }
         return false;
     }
+
+    public String getLoginToken(HttpServletRequest request) {
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals(LOGIN_COOKIE)) {
+                return cookie.getValue();
+            }
+        }
+        return null;
+    }
 }
