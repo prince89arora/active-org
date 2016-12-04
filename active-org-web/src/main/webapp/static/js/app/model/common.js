@@ -9,7 +9,18 @@ define([
     return declare("common", null, {
 
       leftPanelId : "leftPane",
-      contentPaneId : "main-container"
+      contentPaneId : "main-container",
+      loginErrorId : "login-error",
+      loginButton : "mainToolbar.login",
+      userName : "user-name",
+
+      noUser : "anonymous",
+
+      error : {
+        invalidLogin : "Invalid login..."
+      }
+
+
 
     });
 });

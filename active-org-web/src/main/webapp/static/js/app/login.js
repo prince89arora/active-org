@@ -9,9 +9,12 @@ define([
     "dojo/dom",
     "dojo/html",
     "app/modules",
-    "app/leftPanel"
-], function(cookie, declare, request, dom, html, modules, leftPanel) {
-    return declare("login", null, {
+    "app/leftPanel",
+    "app/model/common",
+    "app/model/rest",
+    "app/util/htmlUtil"
+], function(cookie, declare, request, dom, html, modules, leftPanel, common, rest, htmlUtil) {
+    return declare("login", [common, rest], {
 
         usernameinput : "",
         passwordinput : "",
@@ -23,40 +26,41 @@ define([
 
         processLogin: function() {
             var status = false;
-            var usernameVar = this.usernameinput;
-            request.post("/active-org/rest/auth/login", {
+            var token = "";
+
+            request.post(this.url.login, {
                 data: {
-                    username: usernameVar,
+                    username: this.usernameinput,
                     password: this.passwordinput
                 },
                 sync : true,
                 handleAs : "json"
-            }).then(function(response){
+            }).then(function(response) {
                 status = response.status;
-                if (status) {
-                    cookie("loginid", response.token, { expires: 10 });
-                    html.set(dom.byId("user-name"), usernameVar);
-                    //dojo.dom.byId("mainToolbar.login").style.display = "none";
-                    var leftPane = dojo.dom.byId("leftPane");
-                    var mailfolder = new app.leftPanel().placeAt(leftPane);
-                } else {
-                  html.set(dom.byId("login-error"), "Invalid login...");
-                }
+                token = response.token;
             });
+            if (status) {
+                cookie("loginid", token, { expires: 10 });
+                html.set(dom.byId(this.userName), this.usernameinput);
+                htmlUtil.hide(this.loginButton);
+                var leftPane = dojo.dom.byId(this.leftPanelId);
+                var mailfolder = new app.leftPanel().placeAt(leftPane);
+            } else {
+                html.set(dom.byId(this.loginErrorId), this.error.invalidLogin);
+            }
             return status;
         },
 
         logOut : function() {
-          request.post("/active-org/rest/auth/logout", {
+          request.post(this.url.logOut, {
               sync : true,
               handleAs : "json"
           }).then(function(response){
               cookie("loginid", "", { expires: -1 });
           });
-          dojo.html.set(dojo.dom.byId("user-name"), "anonymous");
-          dojo.dom.byId("mainToolbar.login").style.display = "block";
-
-          dojo.html.set(dojo.dom.byId("leftPane"), "");
+          dojo.html.set(dojo.dom.byId(this.userName), this.noUser);
+          htmlUtil.show(this.loginButton);
+          dojo.html.set(dojo.dom.byId(this.leftPanelId), "");
         }
     });
 });
