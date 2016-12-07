@@ -16,10 +16,8 @@
          <%@include file="common/leftPane.jsp" %>
 
          <div data-dojo-type="dijit/layout/ContentPane"
-            data-dojo-props="splitter:true, region:'center'">
-            <div id="main-container">
-                Center pane
-            </div>
+            data-dojo-props="splitter:true, region:'center'" id="main-container">
+
           </div>
 
          <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="splitter:true, region:'right'">Chat Section</div>

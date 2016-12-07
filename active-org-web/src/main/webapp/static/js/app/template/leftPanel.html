@@ -22,9 +22,10 @@
               data-dojo-props="store: mailTreeMemoryStore, query: {id: 0}, labelAttr: 'label'"></div>
 
             <div data-dojo-type="dijit/Tree" id="mailTree"
-                data-dojo-props="model: mailTreeModel, openOnClick: true">
+                data-dojo-props="model: mailTreeModel, openOnClick: false">
                 <script type="dojo/method" event="onClick" args="item">
-                  //TODO fetch mails for folder and display list..
+                  dojo.require("app.mailList");
+                  var mailList = new app.mailList(item.id);
                 </script>
               </div>
             </div>
