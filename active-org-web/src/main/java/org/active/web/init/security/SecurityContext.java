@@ -1,5 +1,7 @@
 package org.active.web.init.security;
 
+import org.active.web.init.commons.ApplicationContextFactory;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
@@ -42,7 +44,9 @@ public class SecurityContext {
     public boolean validateRequest(HttpServletRequest request) {
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals(LOGIN_COOKIE)) {
-                return true;
+                if (ApplicationContextFactory.INIT.getLoginUser(cookie.getValue()) != null) {
+                    return true;
+                }
             }
         }
         return false;
