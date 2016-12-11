@@ -2,6 +2,9 @@ package org.active.web.init.resources;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
+import org.active.model.entity.User;
+import org.active.services.core.ServiceContext;
+import org.active.services.ref.impl.UserService;
 import org.active.web.init.commons.ApplicationContextFactory;
 import org.active.web.init.security.ApplicationUser;
 import org.apache.log4j.Logger;
@@ -67,4 +70,19 @@ public class AuthorizableResources {
                 .getLoginToken(request));
         return Response.ok().entity("{status: true}").build();
     }
+
+    @GET
+    @Path("teast")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response saveTest() {
+        UserService userService = ServiceContext.getContext().getService(UserService.class);
+        User user = new User();
+        user.setUsername("testuser");
+        user.setFirst_name("asdsa");
+        user.setLast_name("asdasdasdasdas");
+        userService.save(user);
+
+        return Response.ok().build();
+    }
+
 }

@@ -1,5 +1,6 @@
 package org.active.web.init;
 
+import org.active.services.core.ContextLoader;
 import org.active.web.init.commons.ApplicationContextFactory;
 import org.active.web.init.commons.HttpMethod;
 import org.active.web.init.mvc.ViewResolverConfig;
@@ -42,6 +43,7 @@ public class WebApplicationInitializer implements ServletContainerInitializer {
                 .httpMethods(new HttpMethod[]{HttpMethod.GET, HttpMethod.POST})
                 .add().secure();
 
+        ContextLoader.loadServices("org.active.services.ref");
 
     }
 }

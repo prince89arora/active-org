@@ -55,6 +55,12 @@
             <artifactId>minimal-json</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.active.parent</groupId>
+            <artifactId>active-org-services</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
