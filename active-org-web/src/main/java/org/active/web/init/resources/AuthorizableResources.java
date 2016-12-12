@@ -3,6 +3,7 @@ package org.active.web.init.resources;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import org.active.model.entity.User;
+import org.active.model.util.CommonUtils;
 import org.active.services.core.ServiceContext;
 import org.active.services.ref.impl.UserService;
 import org.active.web.init.commons.ApplicationContextFactory;
@@ -36,8 +37,10 @@ public class AuthorizableResources {
         String loginToken = "";
         if (request.getParameter("username") != null &&
                 request.getParameter("password") != null) {
-            if ((request.getParameter("username").equals("admin") &&
-                    request.getParameter("password").equals("admin"))) {
+            UserService service = ServiceContext.getContext().getService(UserService.class);
+            User user = service.getUserByUsername(request.getParameter("username"));
+
+            if (CommonUtils.getHash(request.getParameter("password")).equals(user.getPassword())) {
                 status = true;
                 loginToken = UUID.randomUUID().toString();
                 ApplicationContextFactory.INIT.addLoginUser(new ApplicationUser(request.getParameter("username"),
@@ -72,15 +75,18 @@ public class AuthorizableResources {
     }
 
     @GET
-    @Path("teast")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response saveTest() {
-        UserService userService = ServiceContext.getContext().getService(UserService.class);
+    @Path("addUser")
+    @Produces(MediaType.TEXT_HTML)
+    public Response addAdminUser() {
         User user = new User();
-        user.setUsername("testuser");
-        user.setFirst_name("asdsa");
-        user.setLast_name("asdasdasdasdas");
-        userService.save(user);
+        user.setUsername("admin");
+        user.setPassword("admin");
+        user.setFirst_name("Admin");
+        user.setLast_name("Administrator");
+        user.setEmail("admin@mail.com");
+
+        UserService service = ServiceContext.getContext().getService(UserService.class);
+        service.save(user);
 
         return Response.ok().build();
     }

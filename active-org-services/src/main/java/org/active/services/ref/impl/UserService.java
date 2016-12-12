@@ -1,14 +1,14 @@
 package org.active.services.ref.impl;
 
-import org.active.model.entity.MySqlSessionFactory;
+import org.active.model.connection.MySqlSessionFactory;
 import org.active.model.entity.User;
 import org.active.services.annotations.Service;
 import org.active.services.ref.PersistenceService;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -32,7 +32,22 @@ public class UserService implements PersistenceService<User> {
     }
 
     @Override
-    public List<User> get(Query query) {
-     return null;
+    public List<User> getAll() {
+        return null;
+    }
+
+    public User getUserByUsername(String username) {
+        try {
+            Session session = MySqlSessionFactory.getSessionFactory().openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Query<User> query = session.createQuery("from User where username = :uname");
+            query.setParameter("uname", username);
+            User user = query.getSingleResult();
+            return user;
+        } catch (Exception ex) {
+            log.error("Error getting user -> ", ex);
+        }
+        return null;
     }
 }

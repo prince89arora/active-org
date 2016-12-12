@@ -10,5 +10,5 @@ public interface PersistenceService<T> {
 
     public void save(T t);
 
-    public List<T> get(Query query);
+    public List<T> getAll();
 }

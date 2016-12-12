@@ -1,5 +1,7 @@
 package org.active.model.entity;
 
+import org.active.model.util.CommonUtils;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -81,7 +83,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = CommonUtils.getHash(password);
     }
 
     public String toString() {
