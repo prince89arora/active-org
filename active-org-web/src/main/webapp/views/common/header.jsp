@@ -4,10 +4,10 @@
             <nav id="mainNav">
             	<ul>
             		<li>
-            			<a href=""><i class="fa fa-book" ></i></a>
+            			<a href="#"><i class="fa fa-book" ></i></a>
             		</li>
             		<li>
-            			<a href=""><i class="fa fa-users"></i></a>
+            			<a href="#"><i class="fa fa-users"></i></a>
             		</li>
             	</ul>
             </nav>
@@ -16,10 +16,10 @@
             <nav id="userinfo">
             	<ul>
             		<li>
-            			<a href=""><i class="fa fa-bell" aria-hidden="true"></i></a>
+            			<a href="#" id="nav-notification"><i class="fa fa-bell" aria-hidden="true"></i></a>
             		</li>
             		<li>
-            			<a href=""><i class="fa fa-user-circle"></i></a>
+            			<a href="#" id="nav-user"><i class="fa fa-user-circle"></i></a>
             		</li>
             	</ul>
             </nav>
