@@ -11,16 +11,29 @@ define("app/util/htmlUtil",
 
     //Show an element
     show : function(element) {
-      dojo.dom.byId(element).style.display = "block";
+      var node = dojo.dom.byId(element);
+      dojo.addClass(node, "show");
+      dojo.removeClass(node, "hide");
     },
 
     //Hide and element
     hide : function(element) {
-      dojo.dom.byId(element).style.display = "none";
+      var node = dojo.dom.byId(element);
+      dojo.addClass(node, "hide");
+          dojo.removeClass(node, "show");
     },
 
     setHtml : function(element, html) {
-        dojo.dom.byId(element).setContent(html);
+        dojo.dom.byId(element).innerHTML = html;
+    },
+
+    getValue : function(element) {
+          var node =  dojo.dom.byId(element);
+          return dojo.attr(node, "value");
+    },
+
+    getHtml : function(element) {
+        return dojo.dom.byId(element).innerHTML;
     },
 
     getById : function(element) {

@@ -436,3 +436,7 @@ div#user-detail-nav a {
 	background-color: transparent;
 	color: #444;
 }
+
+a#close-login {
+    float: right;
+}

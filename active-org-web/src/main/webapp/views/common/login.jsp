@@ -1,8 +1,8 @@
-<div id="login-wrapper" style="display: none">
+<div id="login-wrapper" class="hide">
     <div class="row">
         <div class="container">
             <div id="login-form" class="col-md-4 col-md-offset-4">
-
+                <a href="#" id="close-login"><i class="fa fa-times" aria-hidden="true"></i></a>    
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" name="username" id="username">
