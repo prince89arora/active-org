@@ -1,0 +1,32 @@
+<div class="row">
+    <section id="header">
+        <div class="col-xs-12 col-md-8" id="nav">
+            <nav id="mainNav">
+            	<ul>
+            		<li>
+            			<a href=""><i class="fa fa-book" ></i></a>
+            		</li>
+            		<li>
+            			<a href=""><i class="fa fa-users"></i></a>
+            		</li>
+            	</ul>
+            </nav>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <nav id="userinfo">
+            	<ul>
+            		<li>
+            			<a href=""><i class="fa fa-bell" aria-hidden="true"></i></a>
+            		</li>
+            		<li>
+            			<a href=""><i class="fa fa-user-circle"></i></a>
+            		</li>
+            	</ul>
+            </nav>
+        </div>    
+        <div style="clear:both"></div>
+    </header>
+    <section id="breadcrums">
+    	<p>Home</p>
+    </section>
+</div>

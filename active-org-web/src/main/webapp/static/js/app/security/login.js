@@ -14,7 +14,7 @@ define([
     "app/model/rest",
     "app/util/htmlUtil"
 ], function(cookie, declare, request, dom, html, modules, leftPanel, common, rest, htmlUtil) {
-    return declare("login", [common, rest], {
+    return declare("login", [rest], {
 
         usernameinput : "",
         passwordinput : "",
@@ -41,12 +41,12 @@ define([
             });
             if (status) {
                 cookie("loginid", token, { expires: 10 });
-                html.set(dom.byId(this.userName), this.usernameinput);
-                htmlUtil.hide(this.loginButton);
-                var leftPane = dojo.dom.byId(this.leftPanelId);
+                html.set(dom.byId(common.userName), this.usernameinput);
+                htmlUtil.hide(common.loginButton);
+                var leftPane = dojo.dom.byId(common.leftPanelId);
                 var mailfolder = new app.leftPanel().placeAt(leftPane);
             } else {
-                html.set(dom.byId(this.loginErrorId), this.error.invalidLogin);
+                html.set(dom.byId(common.loginErrorId), common.error.invalidLogin);
             }
             return status;
         },
@@ -58,9 +58,9 @@ define([
           }).then(function(response){
               cookie("loginid", "", { expires: -1 });
           });
-          dojo.html.set(dojo.dom.byId(this.userName), this.noUser);
-          htmlUtil.show(this.loginButton);
-          dojo.html.set(dojo.dom.byId(this.leftPanelId), "");
+          dojo.html.set(dojo.dom.byId(common.userName), common.noUser);
+          htmlUtil.show(common.loginButton);
+          dojo.html.set(dojo.dom.byId(common.leftPanelId), "");
         }
     });
 });

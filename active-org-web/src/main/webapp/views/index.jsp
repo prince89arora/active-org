@@ -1,28 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
- <html>
+ <!DOCTYPE html>
+<html lang="en">
  <head>
     <title>${title}</title>
     <%@include file="common/head.jsp" %>
  </head>
- <body class="claro">
-    <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:true, liveSplitters:false"
-    id="container">
+ <body>
+    <div id="container">
+        
+         <%@include file="common/header.jsp" %>   
 
-         <!-- Main Toolbar -->
-         <%@include file="common/toolbar.jsp" %>
+         <div class="row">
+            <div class="col-xs-12 col-md-12" id="main-content-section">
+                Main content section...
+            </div>    
+         </div>   
 
-
-         <%@include file="common/leftPane.jsp" %>
-
-         <div data-dojo-type="dijit/layout/ContentPane"
-            data-dojo-props="splitter:true, region:'center'" id="main-container">
-
-          </div>
-
-         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="splitter:true, region:'right'">Chat Section</div>
-         <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'bottom'">Bottom pane</div>
-
+         
     </div>
 
     <%@include file="common/login.jsp" %>
