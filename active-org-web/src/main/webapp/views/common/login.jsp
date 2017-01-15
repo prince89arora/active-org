@@ -1,4 +1,4 @@
-<div id="login-wrapper">
+<div id="login-wrapper" style="display: none">
     <div class="row">
         <div class="container">
             <div id="login-form" class="col-md-4 col-md-offset-4">

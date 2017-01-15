@@ -6,6 +6,6 @@
 <link rel="stylesheet" href="./static/css/font-awesome.min.css">
 <link rel="stylesheet" href="./static/css/custom.css">
 
-<!-- <script src="./static/js/config.js"></script>
+<script src="./static/js/config.js"></script>
 <script src="./static/js/libs/dojo/dojo.js"></script>
-<script src="./static/js/init.js"></script> -->
+<script src="./static/js/init.js"></script>

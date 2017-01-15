@@ -1,31 +1,24 @@
-define("app/model/common", [
-  "dojo/_base/declare",
-    "dojo/request",
-    "dojo/dom",
-    "dojo/html",
-    "app/modules",
-    "app/leftPanel",
-    "dijit/registry"
-], function(declare, request, dom, html, modules, leftPanel, registry){
+define("app/util/common", [
+    "dojo/_base/declare",
+    "app/util/htmlUtil",
+], function(declare, htmlUtil){
 
   var common =  {
-
-    leftPanelId : "leftPane",
-    contentPaneId : "main-container",
-    loginErrorId : "login-error",
-    loginButton : "mainToolbar.login",
-    userName : "user-name",
-
-    noUser : "anonymous",
+  
+    CONS : {
+       contentPaneId : "main-container",
+      loginErrorId : "login-error",
+      userDetailnav : "user-detail-nav",
+      userInfoNav : "nav-user",
+      
+      noUser : "anonymous",
+      loginWrapper : "login-wrapper" 
+    }, 
+  
 
     error : {
         invalidLogin : "Invalid login..."
-      },
-
-      getContainer : function() {
-        return registry.byId(this.contentPaneId);
-      } 
-
+      }
   };
 
   return common;

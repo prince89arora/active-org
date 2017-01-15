@@ -1,19 +1,20 @@
 dojo.require("dojo.dom");
 dojo.require("dojo.parser");
 dojo.require("dijit.registry");
-dojo.require("dijit.Toolbar");
-dojo.require("dijit.form.Button");
 dojo.require("dojo.domReady!");
-dojo.require("dojo.dom-style");
 
 dojo.require("dijit.dijit");
-dojo.require("dijit.Dialog");
-dojo.require("dojo._base.event");
 dojo.require("dojo.html");
-dojo.require("dojo.request");
+dojo.require("app.util.htmlUtil");
+dojo.require("app.util.common");
 
 
 dojo.addOnLoad(function(){
     dojo.parser.parse();
+
+
+    dojo.connect(app.util.htmlUtil.getById(app.util.common.CONS.userInfoNav), "onclick", function(e) {
+        app.util.htmlUtil.toogleDisplay(  app.util.common.CONS.userDetailnav );
+    });
 
 });

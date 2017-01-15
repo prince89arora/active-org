@@ -19,7 +19,12 @@
             			<a href="#" id="nav-notification"><i class="fa fa-bell" aria-hidden="true"></i></a>
             		</li>
             		<li>
-            			<a href="#" id="nav-user"><i class="fa fa-user-circle"></i></a>
+            			<a href="#" id="nav-user" style="position: relative;"><i class="fa fa-user-circle"></i></a>
+            			<div id="user-detail-nav" class="hide">
+        					<p><a href="#" id="show-login">Login</a></p>
+        					<p><a href="#" id="show-logout">Logout</a></p>
+        					<p><a href="#" id="show-profile">Profile</a></p>
+            			</div>
             		</li>
             	</ul>
             </nav>
