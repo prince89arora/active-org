@@ -19,6 +19,7 @@
       <module>active-org-services</module>
       <module>active-org-model</module>
       <module>active-org-web</module>
+      <module>active-org-security</module>
   </modules>
 
   <dependencyManagement>
