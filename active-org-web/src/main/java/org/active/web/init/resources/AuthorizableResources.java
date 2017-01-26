@@ -7,7 +7,7 @@ import org.active.model.util.CommonUtils;
 import org.active.services.core.ServiceContext;
 import org.active.services.ref.impl.UserService;
 import org.active.web.init.commons.ApplicationContextFactory;
-import org.active.web.init.security.ApplicationUser;
+import org.active.web.init.util.ServiceResponse;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +29,12 @@ public class AuthorizableResources {
 
     private static final Logger log = Logger.getLogger(AuthorizableResources.class);
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response hello() {
+        return Response.ok().entity("{status: true}").build();
+    }
+
     @POST
     @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,8 +49,6 @@ public class AuthorizableResources {
             if (CommonUtils.getHash(request.getParameter("password")).equals(user.getPassword())) {
                 status = true;
                 loginToken = UUID.randomUUID().toString();
-                ApplicationContextFactory.INIT.addLoginUser(new ApplicationUser(request.getParameter("username"),
-                        loginToken));
             }
         }
         JsonObject json = Json.object();
@@ -71,7 +75,7 @@ public class AuthorizableResources {
     public Response logOut(@Context HttpServletRequest request) {
         ApplicationContextFactory.INIT.logoutUser(ApplicationContextFactory.INIT.getSecurityContext()
                 .getLoginToken(request));
-        return Response.ok().entity("{status: true}").build();
+        return ServiceResponse.ok();
     }
 
     @GET

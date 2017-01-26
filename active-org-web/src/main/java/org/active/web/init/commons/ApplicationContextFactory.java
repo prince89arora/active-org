@@ -1,8 +1,8 @@
 package org.active.web.init.commons;
 
-import org.active.web.init.mvc.AbstractViewResolver;
-import org.active.web.init.security.SecurityContext;
-import org.active.web.init.security.User;
+
+import org.active.security.SecurityContext;
+import org.active.security.User;
 
 import javax.servlet.ServletContext;
 import java.util.HashMap;
@@ -20,7 +20,6 @@ public enum ApplicationContextFactory {
     INIT;
 
     private ServletContext servletContext;
-    private AbstractViewResolver viewResolver;
     private SecurityContext securityContext;
 
     private Map<String, User> loginUsers;
@@ -31,14 +30,6 @@ public enum ApplicationContextFactory {
 
     public ServletContext getServletContext() {
         return this.servletContext;
-    }
-
-    public void setViewResolverFactory(AbstractViewResolver viewResolver) {
-        this.viewResolver = viewResolver;
-    }
-
-    public AbstractViewResolver getViewResolver() {
-        return this.viewResolver;
     }
 
     public SecurityContext getSecurityContext() {
