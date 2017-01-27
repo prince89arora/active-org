@@ -1,6 +1,6 @@
 package org.active.security.crypto;
 
-public interface Encryption {
+public interface Encryption extends Closeable {
 
     String encrypt(String text);
 

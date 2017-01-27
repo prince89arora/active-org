@@ -8,6 +8,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -19,11 +20,11 @@ public class AESEncryption implements Encryption {
 
     private static AESEncryption encryption = null;
 
-    private String key;
+    private byte[] key;
 
     private Cipher cipher;
 
-    private String initVector;
+    private byte[] initVector;
 
     private IvParameterSpec ivParameterSpec;
 
@@ -74,14 +75,19 @@ public class AESEncryption implements Encryption {
         return null;
     }
 
-    public void setKey(String key) {
+    public void setKey(byte[] key) {
         this.key = key;
-        this.keySpec = new SecretKeySpec(this.key.getBytes(),
+        this.keySpec = new SecretKeySpec(this.key,
                 EncryptionUtil.Type.AES.toString());
     }
 
-    public void setInitVector(String initVector) {
+    public void setInitVector(byte[] initVector) {
         this.initVector = initVector;
-        this.ivParameterSpec = new IvParameterSpec(this.initVector.getBytes());
+        this.ivParameterSpec = new IvParameterSpec(this.initVector);
+    }
+
+    @Override
+    public void close() throws IOException {
+        encryption = null;
     }
 }
