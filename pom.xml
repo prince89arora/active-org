@@ -108,6 +108,13 @@
                <artifactId>mysql-connector-java</artifactId>
                <version>5.1.37</version>
            </dependency>
+	       
+	   <!-- Apache Codec -->
+	   <dependency>
+	      <groupId>commons-codec</groupId>
+	      <artifactId>commons-codec</artifactId>
+	      <version>1.10</version>
+	   </dependency>    
 
        </dependencies>
   </dependencyManagement>
