@@ -2,6 +2,9 @@ package org.active.security;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
+import org.active.security.util.SecurityUtil;
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.Json;
 
 /**
  *
@@ -9,9 +12,11 @@ import java.util.regex.Pattern;
 public class SecurityContext {
 
     private SecurityInitializer initializer;
+    private UserStateCache provider;
 
     public SecurityContext(SecurityInitializer initializer) {
         this.initializer = initializer;
+        this.provider = UserStateCache.getProvider();
     }
 
     public SecurityInitializer getInitializer() {
@@ -46,7 +51,14 @@ public class SecurityContext {
         return null;
     }
 
-    public void login(String username, String clientIp) {
-
+    public void login(String username, String clientIp, String key, String initVector) {
+        JsonObject jsonObject = Json.object();
+        jsonObject.set("username", username);
+        jsonObject.set("clientIp", clientIp);
+       
+        String token = SecurityUtil.generateToken(jsonObject, String key, String initVector);
+      
+        User user = new ApplicationUser(username, token, clientIp);
+        this.provider.addUser(user);
     }
 }

@@ -29,6 +29,10 @@ public class User {
     private String email;
 
     private String password;
+  
+    private String key;
+  
+    private String initVector;
 
     public Long getUserid() {
         return userid;
@@ -84,6 +88,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = CommonUtils.getHash(password);
+    }
+  
+    public void setKey(String key) {
+        this.key = key;
+    }
+  
+    public String getKey() {
+        return this.key;
+    }
+  
+    public void setInitVector(String initVector) {
+        this.initVector = initVector;
+    }
+  
+    public String getInitVector() {
+        return this.initVector;
     }
 
     public String toString() {

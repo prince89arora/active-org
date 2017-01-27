@@ -47,8 +47,9 @@ public class AuthorizableResources {
             User user = service.getUserByUsername(request.getParameter("username"));
 
             if (CommonUtils.getHash(request.getParameter("password")).equals(user.getPassword())) {
+                SecurityContext securityContext = ApplicationContextFactory.INIT.getSecurityContext();
+                securityContext.login(user.getUsername(), request.getRemoteAddr(), user.getKey(), user.getInitVector());
                 status = true;
-                loginToken = UUID.randomUUID().toString();
             }
         }
         JsonObject json = Json.object();
