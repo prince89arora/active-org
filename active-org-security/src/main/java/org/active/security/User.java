@@ -3,7 +3,8 @@ package org.active.security;
 import java.util.Map;
 
 /**
- *
+ * User pojo for loggin status cache.
+ * @author princearora
  */
 public abstract class User {
 

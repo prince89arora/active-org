@@ -3,7 +3,8 @@ package org.active.security;
 import java.security.Principal;
 
 /**
- *
+ * Request user principle {@see Principal}
+ * @author princearora
  */
 public class UserPrinciple implements Principal {
 

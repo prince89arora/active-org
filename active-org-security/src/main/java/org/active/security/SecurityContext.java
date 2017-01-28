@@ -6,8 +6,10 @@ import org.active.security.util.SecurityUtil;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.Json;
 
+import static org.active.security.util.SecurityCommons.LOGIN_HEADER;
+
 /**
- *
+ * @author princearora
  */
 public class SecurityContext {
 
@@ -42,23 +44,33 @@ public class SecurityContext {
     }
 
     public boolean validateRequest(HttpServletRequest request) {
-        //todo check header token
-        return false;
+        if (this.isSecure(request.getRequestURI())) {
+            if (request.getHeader(LOGIN_HEADER) != null &&
+                    this.provider.getUser(request.getHeader(LOGIN_HEADER)) != null) {
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
-    public String getLoginToken(HttpServletRequest request) {
-        //todo get login token from header
-        return null;
+    public User getUserFromRequest(HttpServletRequest request) {
+        return this.provider.getUser(request.getHeader(LOGIN_HEADER));
     }
 
-    public void login(String username, String clientIp, String key, String initVector) {
+    public String login(String username, String clientIp) {
         JsonObject jsonObject = Json.object();
         jsonObject.set("username", username);
         jsonObject.set("clientIp", clientIp);
        
-        String token = SecurityUtil.generateToken(jsonObject, String key, String initVector);
+        String token = SecurityUtil.generateToken(jsonObject);
       
         User user = new ApplicationUser(username, token, clientIp);
         this.provider.addUser(user);
+        return token;
+    }
+
+    public void logout(String loginToken) {
+        this.provider.removeUser(loginToken);
     }
 }

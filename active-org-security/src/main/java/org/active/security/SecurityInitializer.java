@@ -1,15 +1,15 @@
 package org.active.security;
 
-import org.active.security.filters.ApplicationSecurityFilter;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Main Security Initializer for web application.
  *
+ * @author princearora
  */
-
 public class SecurityInitializer {
 
     private static final Logger log = Logger.getLogger(SecurityInitializer.class);

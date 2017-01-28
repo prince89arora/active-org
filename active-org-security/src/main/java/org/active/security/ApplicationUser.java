@@ -3,7 +3,7 @@ package org.active.security;
 import java.util.Map;
 
 /**
- *
+ * @author princearora
  */
 public class ApplicationUser extends User {
 

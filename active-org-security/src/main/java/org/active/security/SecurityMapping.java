@@ -1,7 +1,10 @@
 package org.active.security;
 
 /**
+ * Url mappings to allow or disallow anonymous access for
+ * any url.
  *
+ * @author princearora
  */
 public class SecurityMapping {
 

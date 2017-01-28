@@ -1,5 +1,9 @@
 package org.active.security.filters;
 
+import org.active.security.ApplicationRequest;
+import org.active.security.SecurityInitializer;
+import org.active.security.User;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- *
+ * @author princearora
  */
 @WebFilter(urlPatterns = {"/", "/**", "/*"}, filterName = "Security Filter")
 public class ApplicationSecurityFilter implements Filter {
@@ -30,8 +34,11 @@ public class ApplicationSecurityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-
-        filterChain.doFilter(request, response);
+        if (!SecurityInitializer.getSecurityContext().validateRequest(request)) {
+            response.sendError(403);
+            return;
+        }
+        filterChain.doFilter(new ApplicationRequest(request), response);
     }
 
     @Override

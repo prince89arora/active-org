@@ -2,6 +2,9 @@ package org.active.security.crypto;
 
 import java.security.SecureRandom;
 
+/**
+ * @author princearora 
+ */
 public class EncryptionUtil {
 
     public static Encryption getInstance(Type type) throws EncryptionTypeNotFound {

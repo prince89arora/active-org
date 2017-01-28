@@ -14,7 +14,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *
+ * @author princearora
  */
 public class AESEncryption implements Encryption {
 
@@ -35,6 +35,8 @@ public class AESEncryption implements Encryption {
     private AESEncryption() {
         try {
             this.cipher = Cipher.getInstance(CIPHER);
+            this.setKey(EncryptionUtil.generateKey(16));
+            this.setInitVector(EncryptionUtil.generateKey(16));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
