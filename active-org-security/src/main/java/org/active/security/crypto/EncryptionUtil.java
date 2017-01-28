@@ -3,7 +3,7 @@ package org.active.security.crypto;
 import java.security.SecureRandom;
 
 /**
- * @author princearora 
+ * @author princearora
  */
 public class EncryptionUtil {
 

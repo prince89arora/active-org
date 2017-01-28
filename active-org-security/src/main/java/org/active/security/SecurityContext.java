@@ -26,7 +26,8 @@ public class SecurityContext {
     }
 
     public boolean isSecure(String path) {
-        return this.findMapping(path).isAuthorized();
+        SecurityMapping mapping = this.findMapping(path);
+        return ( mapping == null ) ? true : mapping.isAuthorized();
     }
 
     public SecurityMapping findMapping(String path) {

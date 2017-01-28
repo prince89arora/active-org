@@ -2,7 +2,6 @@ package org.active.security.filters;
 
 import org.active.security.ApplicationRequest;
 import org.active.security.SecurityInitializer;
-import org.active.security.User;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

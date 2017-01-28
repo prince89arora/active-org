@@ -35,10 +35,7 @@ public class WebApplicationInitializer implements ServletContainerInitializer {
         ApplicationContextFactory.INIT.setServletContext(servletContext);
 
         //Initialising security
-        SecurityInitializer.init().url("/rest/auth/login").authorized(false)
-                .add().url("/rest/auth/logout").authorized(true).add()
-                .url("/rest/auth/test").authorized(true).add()
-                .url("/rest/auth").authorized(false).add().secure();
+        SecurityInitializer.init().url("/rest/auth/login").authorized(false).add().secure();
         ApplicationContextFactory.INIT.setSecurityContext(SecurityInitializer.getSecurityContext());
     }
 }

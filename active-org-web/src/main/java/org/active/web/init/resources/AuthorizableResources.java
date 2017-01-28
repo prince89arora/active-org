@@ -34,13 +34,6 @@ public class AuthorizableResources {
 
     private static final Logger log = Logger.getLogger(AuthorizableResources.class);
 
-    @GET
-    @Path("test")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response hello(@Context HttpServletRequest request) {
-        return Response.ok().entity("{status: true}").build();
-    }
-
     @POST
     @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
